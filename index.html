@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111111">
+<title>شيخة | SHEIKHA</title>
+<style>
+:root{--bg:#101010;--panel:#191919;--gold:#c9a65a;--gold2:#ead7a1;--muted:#b8b1a3;--line:#554629}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#292216 0,#101010 42%);color:#f5f0e5;font-family:Tahoma,Arial,sans-serif}
+header{padding:26px 18px 18px;text-align:center;border-bottom:1px solid #443820}
+.logo{font-size:34px;font-weight:800;letter-spacing:2px;color:var(--gold2)}.sub{color:var(--muted);font-size:13px;margin-top:8px}
+main{max-width:850px;margin:auto;padding:20px 16px 50px}
+.hero{padding:28px 20px;text-align:center;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,#242018,#151515);box-shadow:0 12px 35px #0008}
+h1{font-size:24px;color:var(--gold2);margin:0 0 10px}.hero p{color:var(--muted);line-height:1.8;margin:0}
+.section-title{color:var(--gold2);font-size:19px;margin:28px 2px 14px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+button,.province{font:inherit;cursor:pointer}
+.province{background:linear-gradient(135deg,#24221d,#171717);color:#f3e6c5;border:1px solid var(--line);border-radius:12px;padding:15px 10px;text-align:center}
+.province:active{transform:scale(.98);background:#342b1b}
+.panel{display:none;margin-top:20px;padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--panel)}
+.panel.show{display:block}.back{border:1px solid var(--line);background:#28231a;color:var(--gold2);border-radius:9px;padding:9px 13px}
+.empty{border:1px dashed #665637;border-radius:12px;padding:20px;text-align:center;color:var(--muted);line-height:1.8;margin-top:14px}
+footer{text-align:center;color:#8d8678;font-size:12px;padding:18px}
+@media(min-width:600px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{padding:38px}}
+</style>
+</head>
+<body>
+<header><div class="logo">شيخة <span style="font-size:18px">SHEIKHA</span></div><div class="sub">منصة عراقية لعرض الخدمات وفرص العمل</div></header>
+<main>
+<section class="hero">
+<h1>أهلاً بك في شيخة</h1>
+<p>اختر المحافظة حتى تستعرض الملفات والخدمات المتاحة فيها.<br>هذه نسخة تجريبية أولية قابلة للتطوير.</p>
+</section>
+<h2 class="section-title">اختر المحافظة</h2>
+<div class="grid" id="provinces"></div>
+<section class="panel" id="details">
+<button class="back" onclick="goBack()">رجوع للمحافظات</button>
+<h2 class="section-title" id="chosen"></h2>
+<div class="empty">ماكو ملفات مضافة حالياً.<br>راح تظهر هنا الملفات بعد تجهيز لوحة الإدارة وإضافة البيانات بموافقة أصحابها.</div>
+</section>
+<footer>© شيخة SHEIKHA — نموذج أولي تجريبي</footer>
+</main>
+<script>
+const names=["بغداد","نينوى","البصرة","أربيل","النجف","كربلاء","دهوك","السليمانية","الأنبار","كركوك","ديالى","صلاح الدين","واسط","ميسان","ذي قار","المثنى","القادسية","بابل"];
+const root=document.getElementById('provinces');
+names.forEach(n=>{const b=document.createElement('button');b.className='province';b.textContent=n;b.onclick=()=>{document.getElementById('chosen').textContent='محافظة '+n;document.getElementById('details').classList.add('show');root.style.display='none';document.querySelector('.section-title').style.display='none';};root.appendChild(b)});
+function goBack(){document.getElementById('details').classList.remove('show');root.style.display='grid';document.querySelector('main > .section-title').style.display='block';}
+</script>
+</body></html>
